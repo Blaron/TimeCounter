@@ -58,7 +58,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-currentTime = 2
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 5.0
