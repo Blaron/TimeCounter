@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/TimerCounter/SmoochSans-Light.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://addons/TimerCounter/TimerCounter.gd" type="Script" id=2]
+[ext_resource path="res://addons/TimerCounter/btn_on.png" type="Texture" id=3]
+[ext_resource path="res://addons/TimerCounter/btn_off.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0.0720978, 0.0860388, 0.0976563, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.180392, 0.219608, 0.25098, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id=6]
+PanelContainer/styles/panel = SubResource( 2 )
+
+[sub_resource type="Theme" id=10]
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 8.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+corner_detail = 1
+
+[sub_resource type="Theme" id=9]
+PanelContainer/styles/panel = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="Theme" id=3]
+Label/fonts/font = SubResource( 5 )
+Label/styles/normal = SubResource( 7 )
+
+[node name="TimerCounter" type="PanelContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -112.0
+margin_bottom = 48.0
+grow_horizontal = 0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+theme = SubResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+currentTime = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 107.0
+margin_bottom = 46.0
+theme = SubResource( 10 )
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 44.0
+theme = SubResource( 9 )
+
+[node name="button_play" type="TextureButton" parent="VBoxContainer/PanelContainer"]
+margin_left = 2.0
+margin_top = 8.0
+margin_right = 14.0
+margin_bottom = 44.0
+texture_normal = ExtResource( 3 )
+texture_disabled = ExtResource( 4 )
+
+[node name="button_paused" type="TextureButton" parent="VBoxContainer/PanelContainer"]
+margin_left = 2.0
+margin_top = 8.0
+margin_right = 14.0
+margin_bottom = 44.0
+texture_normal = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_left = 40.0
+margin_top = 7.0
+margin_right = 81.0
+margin_bottom = 37.0
+theme = SubResource( 3 )
+text = "START"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/PanelContainer/button_play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/button_paused" to="." method="_on_button_paused_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
