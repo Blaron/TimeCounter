@@ -26,7 +26,6 @@ func _process(delta):
 		var minutes = (elapsed / 60)% 60
 		var seconds = elapsed % 60
 		var str_elapsed = "%02d:%02d:%02d" % [hours, minutes, seconds]
-		print(str_elapsed)
 		$VBoxContainer/Label.text = str(str_elapsed)
 
 func _on_Timer_timeout():
